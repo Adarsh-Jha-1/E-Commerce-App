@@ -29,12 +29,15 @@ public class SaveMerchant extends GenericServlet{
 		String password = req.getParameter("password");
 		
 
-		String insertQuery = "Insert into Merchant (name,email,mobileNumber,password)Values(?,?,?,?,?)";
+		String insertQuery = "Insert into Merchant (name,email,mobileNumber,password)Values(?,?,?,?)";
 		PreparedStatement statement;
 		try {
 			statement = con.getConnection().prepareStatement(insertQuery);
-			statement.setString(1, email);
-			statement.setString(2, password);
+			statement.setString(1, Name);
+			statement.setString(2, email);
+			statement.setString(3, mobileNumber);
+			statement.setString(4, password);
+			
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -18,7 +18,7 @@
 
             <input type="submit" value="Login">
         </form>
-        <a href="MerchantSignup">Didnt have an Account-Signup</a>
+        <a href="MerchantSignup.jsp">Didnt have an Account-Signup</a>
 	
 </body>
 
