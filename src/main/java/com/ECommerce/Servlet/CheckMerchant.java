@@ -34,10 +34,9 @@ public class CheckMerchant extends GenericServlet {
 			statement = con.getConnection().prepareStatement(insertQuery);
 			statement.setString(1, email);
 			statement.setString(2, password);
-			
-			if(statement.execute()) {
-				  
-				
+
+			if (statement.execute()) {
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

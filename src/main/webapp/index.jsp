@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Options</title>
+     <link rel="icon"  href="shopping-cart5929.jpg">
 </head>
 
 <body>
@@ -13,7 +14,7 @@
     </div>
 
     <div id="Merchant_login">
-        <a href="addMerchant">Login as a Merchant</a>
+        <a href="MerchantLogin.jsp">Login as a Merchant</a>
     </div>
 
 </body>
