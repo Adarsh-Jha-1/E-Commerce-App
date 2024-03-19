@@ -5,19 +5,24 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectWithDatabase {
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/e-commerce";
+    private static final String USER = "root";
+    private static final String PASSWORD = "@mysql2024";
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myhiber", "root", "root");
-            return con;
+            return DriverManager.getConnection(DB_URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.err.println("MySQL JDBC Driver not found. Make sure it is added to your classpath.");
+            handleException("MySQL JDBC Driver not found. Make sure it is added to your classpath.", e);
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Failed to connect to the database.");
+            handleException("Failed to connect to the database.", e);
         }
         return null;
+    }
+
+    private static void handleException(String message, Exception e) {
+        e.printStackTrace();
+        System.err.println(message);
     }
 }
