@@ -6,15 +6,14 @@ import java.sql.SQLException;
 import com.ECommerce.DAO.MerchantDAO;
 import com.ECommerce.entity.Merchant;
 
-import jakarta.servlet.GenericServlet;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/registerMerchant")
-public class RegisterMerchant extends GenericServlet {
+public class RegisterMerchant extends HttpServlet {
     private MerchantDAO merchantDAO;
 
     public RegisterMerchant() {
@@ -23,7 +22,7 @@ public class RegisterMerchant extends GenericServlet {
     }
 
     @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String name = req.getParameter("name");
         String email = req.getParameter("email");
         Long mobileNumber = Long.parseLong(req.getParameter("mobileNumber"));
@@ -32,10 +31,12 @@ public class RegisterMerchant extends GenericServlet {
         Merchant merchant = new Merchant(name, email, mobileNumber, password);
         try {
             merchantDAO.saveMerchant(merchant);
-            RequestDispatcher rd = req.getRequestDispatcher("/MerchantLogin.jsp");
-            rd.forward(req, res);
+            res.sendRedirect(req.getContextPath() + "/MerchantLogin.jsp");
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately
+            // Forward to an error page or display an error message
+            req.setAttribute("errorMessage", "Error registering merchant. Please try again.");
+            req.getRequestDispatcher("/error.jsp").forward(req, res);
         }
     }
 }

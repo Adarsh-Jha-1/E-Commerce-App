@@ -51,13 +51,14 @@
 
 <body>
     <%int id = (int) session.getAttribute("MerchantId"); %>
-    <%= id %>
+    <h1> <%= session.getAttribute("MerchantId") %></h1>
+    
     <div class="container">
-        <div id="AddProduct">
-            <a href="addproduct">Add a Product</a>
+        <div id="addProduct">
+            <a href="addproduct.jsp">Add a Product</a>
         </div>
 
-        <div id="ViewProduct">
+        <div id="viewProduct">
             <a href="viewProduct">View Products</a>
         </div>
     </div>
